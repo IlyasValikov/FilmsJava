@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class FilmsManagerTest {
@@ -43,15 +42,39 @@ public class FilmsManagerTest {
 
     @Test
     public void lastFilm() {
-        manager.addFilm(film1);
-        manager.addFilm(film2);
         manager.addFilm(film3);
         manager.addFilm(film4);
         manager.addFilm(film5);
+        manager.addFilm(film6);
+        manager.addFilm(film7);
 
-        FilmsItems[] expected = {film5, film4, film3, film2, film1};
+        FilmsItems[] expected = {film7, film6, film5, film4, film3};
         FilmsItems[] actual = manager.findLastFilm();
 
         Assertions.assertArrayEquals(expected , actual);
     }
+
+    @Test
+    public void testLimit() {
+
+        manager.getLimit();
+
+        int expected = 5;
+        int actual = manager.getLimit();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void FilmsAboveLimit() {
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        manager.addFilm(film3);
+
+        FilmsItems[] expected = {film3, film2, film1};
+        FilmsItems[] actual = manager.findLastFilm();
+
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
 }

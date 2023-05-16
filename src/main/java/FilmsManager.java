@@ -4,11 +4,12 @@ public class FilmsManager {
     private int limit;
 
     public FilmsManager() {
+
         this.limit = 5;
     }
 
-    public FilmsManager(int limit) {
-        this.limit = limit;
+    public int getLimit() {
+        return limit;
     }
 
 

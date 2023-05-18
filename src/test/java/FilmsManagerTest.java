@@ -37,7 +37,7 @@ public class FilmsManagerTest {
         FilmsItems[] expected = {film2};
         FilmsItems[] actual = manager.findAllFilms();
 
-        Assertions.assertArrayEquals(expected , actual);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class FilmsManagerTest {
         FilmsItems[] expected = {film7, film6, film5, film4, film3};
         FilmsItems[] actual = manager.findLastFilm();
 
-        Assertions.assertArrayEquals(expected , actual);
+        Assertions.assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class FilmsManagerTest {
     }
 
     @Test
-    public void FilmsAboveLimit() {
+    public void FilmsUnderLimit() {
         manager.addFilm(film1);
         manager.addFilm(film2);
         manager.addFilm(film3);
@@ -75,6 +75,35 @@ public class FilmsManagerTest {
         FilmsItems[] actual = manager.findLastFilm();
 
         Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void FilmsAboveLimit() {
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        manager.addFilm(film3);
+        manager.addFilm(film4);
+        manager.addFilm(film5);
+        manager.addFilm(film6);
+
+        FilmsItems[] expected = {film6, film5, film4,film3, film2};
+        FilmsItems[] actual = manager.findLastFilm();
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void FilmsInLimit() {
+        manager.addFilm(film1);
+        manager.addFilm(film2);
+        manager.addFilm(film3);
+        manager.addFilm(film4);
+        manager.addFilm(film5);
+
+        FilmsItems[] expected = {film5, film4,film3, film2, film1};
+        FilmsItems[] actual = manager.findLastFilm();
+
     }
 
 }
